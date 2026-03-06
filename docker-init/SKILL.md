@@ -1,8 +1,8 @@
 ---
 name: docker-init
 description: Initialize Dockerfile and .dockerignore for the current project by detecting language, framework, and package manager.
-allowedTools:
-  - "Bash(docker build *)"
+argument-hint: "[target-directory]"
+allowed-tools: Read, Glob, Grep, Bash(docker build *)
 ---
 
 # docker-init
