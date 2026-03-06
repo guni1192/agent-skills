@@ -1,6 +1,8 @@
 ---
 name: docker-init
 description: Initialize Dockerfile and .dockerignore for the current project by detecting language, framework, and package manager.
+allowedTools:
+  - "Bash(docker build *)"
 ---
 
 # docker-init
@@ -54,6 +56,13 @@ Generate a Dockerfile and .dockerignore tailored to the current project.
      - Python: `gcr.io/distroless/python3-debian12:nonroot`
      - Java: `gcr.io/distroless/java21-debian12:nonroot`
      - .NET: `gcr.io/distroless/dotnet8-debian12:nonroot` (match the .NET version)
+   - Always use the **latest stable version** of the language/runtime for base images. Check the project config (e.g., `go.mod`, `Cargo.toml`, `package.json engines`, `.python-version`) to determine the version, and default to the latest stable if unspecified.
+   - When downloading binaries via `curl` or `wget`, always **verify the checksum** (e.g., `sha256sum --check`) before using them.
+   - **Pin image tags to full semver patch versions** (e.g., `node:22.12.0-bookworm`, `golang:1.23.4-bookworm`) instead of using `latest`, major-only, or minor-only tags. This ensures reproducible builds.
+   - Prefer **copying CLI tools from official Docker images** using `COPY --from=` rather than downloading them with `curl`. For example:
+     ```dockerfile
+     COPY --from=aquasec/trivy:0.58.2 /usr/local/bin/trivy /usr/local/bin/trivy
+     ```
    - Copy dependency files first and install dependencies before copying source code to leverage **Docker layer caching**
    - Set appropriate `EXPOSE` port if detectable
    - Do NOT add `HEALTHCHECK` (distroless images do not have a shell or curl)
