@@ -40,13 +40,9 @@ Create a branch, commit staged changes with a signed commit, and push to open a 
    - The commit body should explain **why** the change was made if the reason is not obvious from the subject line.
    - Always create a **signed commit** using `git commit -s -S` (`-s` for Signed-off-by, `-S` for GPG signature).
 
-6. **Push the branch** (requires user approval):
-   - Before pushing, show the user a summary of:
-     - Branch name
-     - Commit message
-     - Files changed
+6. **Push the branch**:
    - **Verify that the current branch is NOT the default branch.** If it is, abort and inform the user.
-   - Run `git push -u origin <branch-name>` — this step MUST be confirmed by the user.
+   - Run `git push -u origin <branch-name>`.
 
 7. **Create the pull request**:
    - Use `gh pr create` to open a pull request.
@@ -56,7 +52,7 @@ Create a branch, commit staged changes with a signed commit, and push to open a 
 
 ## Important notes
 
-- The `git push` command is NOT in the allowed-tools list intentionally. It must always require explicit user approval.
+- The `git push` command is NOT in the allowed-tools list intentionally. The user will be prompted by the tool permission system when push is executed.
 - **NEVER push to the default branch directly.** Always push to the feature branch.
 - Always use signed commits (`git commit -s -S`): `-s` adds Signed-off-by, `-S` adds GPG signature.
 - Commit messages must be in English.
