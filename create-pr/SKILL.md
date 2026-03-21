@@ -1,7 +1,7 @@
 ---
 name: create-pr
 description: Create a pull request by branching from the default branch, committing changes with a signed commit, and pushing.
-argument-hint: "[description of the changes]"
+argument-hint: "[description of the changes] [--draft=true|false]"
 allowed-tools: Read, Glob, Grep, Bash(git checkout *), Bash(git switch *), Bash(git branch *), Bash(git add *), Bash(git commit *), Bash(git diff *), Bash(git status *), Bash(git log *), Bash(git remote *), Bash(git rev-parse *), Bash(gh pr create *)
 ---
 
@@ -49,6 +49,7 @@ Create a branch, commit staged changes with a signed commit, and push to open a 
    - Set the title to match or closely reflect the commit message subject.
    - Write a PR description that summarizes the changes and their intent.
    - Target the default branch.
+   - **Draft mode**: By default, create the PR as a draft (`--draft`). If the user explicitly passes `--draft=false`, omit the `--draft` flag to create a ready-for-review PR.
 
 ## Important notes
 
