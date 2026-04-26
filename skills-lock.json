@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "docker-init": {
+      "source": "guni1192/agent-skills",
+      "sourceType": "github",
+      "computedHash": "acf0cb9c961532e537342f0d077b58aebf9dc597e2c104db12efae8d806f049c"
+    }
+  }
+}
